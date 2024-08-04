@@ -5,6 +5,13 @@ const app = express()
 require('dotenv').config();
 
 app.use("/api/data", dataRoute);
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET'],
+    allowedHeaders: ['Content-type']
+  })
+)
 
 const mongoURI = process.env.MONGO_URI;
 
