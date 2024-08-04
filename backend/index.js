@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const dataRoute = require("./routes/data.route.js")
 const app = express()
+const cors = require('cors')
 require('dotenv').config();
 
 app.use("/api/data", dataRoute);
