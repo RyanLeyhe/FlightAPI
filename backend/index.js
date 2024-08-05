@@ -8,7 +8,7 @@ require('dotenv').config();
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173', // Adjust this to your frontend URL
+  origin: 'http://localhost:5173', 
   methods: ['GET'],
   allowedHeaders: ['Content-Type']
 }));
