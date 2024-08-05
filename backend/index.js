@@ -13,8 +13,8 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 
-app.use('/api/data', dataRoute);
-app.use('/api/codes', airportRoute);
+app.use("/api/data", dataRoute);
+app.use('/api/airports', airportRoute);
 
 const mongoURI = process.env.MONGO_URI;
 

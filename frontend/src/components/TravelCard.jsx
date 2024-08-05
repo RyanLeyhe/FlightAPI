@@ -1,14 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Select from 'react-select';
 
 const TravelCard = () => {
   const [travelInstances, setTravelInstances] = useState([{ from: '', to: '' }]);
+  const [originOptions, setOriginOptions] = useState([]);
+  const [destinationOptions, setDestinationOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchAirports = async () => {
+      try {
+        // Fetch all unique codes
+        const response = await axios.get('http://localhost:3000/api/airports/codes');
+        const codes = response.data;
+        const options = codes.map(code => ({
+          value: code,
+          label: code // Adjust label if you have additional details
+        }));
+        setOriginOptions(options);
+        setDestinationOptions(options);
+      } catch (error) {
+        console.error('Error fetching airport codes:', error);
+      }
+    };
+
+    fetchAirports();
+  }, []);
 
   const handleAddInstance = () => {
     setTravelInstances([...travelInstances, { from: '', to: '' }]);
   };
 
   const handleDeleteInstance = (index) => {
-    if (index > 0) { // Prevent deletion of the first instance
+    if (index > 0) {
       setTravelInstances(travelInstances.filter((_, i) => i !== index));
     }
   };
@@ -25,32 +49,30 @@ const TravelCard = () => {
       <div className="flex flex-col gap-4">
         {travelInstances.map((instance, index) => (
           <div key={index} className="flex items-center flex-wrap gap-2">
-            <input
-              type="text"
-              placeholder="Origin"
-              value={instance.from}
-              onChange={(e) => handleChange(index, 'from', e.target.value)}
-              className="border rounded-md p-2 flex-grow min-w-0 max-w-xxsm"
+            <Select
+              placeholder="From"
+              options={originOptions}
+              onChange={(selected) => handleChange(index, 'from', selected?.value || '')}
+              className="flex-grow min-w-0 max-w-xs"
             />
             <span className="mx-2">to</span>
-            <input
-              type="text"
-              placeholder="Destination"
-              value={instance.to}
-              onChange={(e) => handleChange(index, 'to', e.target.value)}
-              className="border rounded-md p-2 flex-grow min-w-0 max-w-xxsm"
+            <Select
+              placeholder="To"
+              options={destinationOptions}
+              onChange={(selected) => handleChange(index, 'to', selected?.value || '')}
+              className="flex-grow min-w-0 max-w-xs"
             />
             {index > 0 && ( // Only show delete button if it's not the first instance
               <button
                 onClick={() => handleDeleteInstance(index)}
-                className="bg-red-500 text-white rounded-md p-2 max-w-xxsm"
+                className="bg-red-500 text-white rounded-md p-2 max-w-xs"
               >
                 Delete
               </button>
             )}
           </div>
         ))}
-        <button onClick={handleAddInstance} className="bg-blue-500 text-white rounded-md p-2 mt-4 max-w-xxsm">
+        <button onClick={handleAddInstance} className="bg-blue-500 text-white rounded-md p-2 mt-4 max-w-xs">
           Add Another
         </button>
       </div>
