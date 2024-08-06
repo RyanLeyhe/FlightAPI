@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
+const API_BASE_URL = 'http://18.188.12.168:3000';
+
 const TravelCard = () => {
   const [travelInstances, setTravelInstances] = useState([{ from: '', to: '' }]);
   const [originOptions, setOriginOptions] = useState([]);
@@ -11,7 +13,7 @@ const TravelCard = () => {
     const fetchAirports = async () => {
       try {
         // Fetch all unique codes
-        const response = await axios.get('http://localhost:3000/api/airports/codes');
+        const response = await axios.get(`${API_BASE_URL}/api/airports/codes`);
         const codes = response.data;
         const options = codes.map(code => ({
           value: code,
