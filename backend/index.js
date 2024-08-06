@@ -18,11 +18,13 @@ app.use('/api/airports', airportRoute);
 
 const mongoURI = process.env.MONGO_URI;
 
-mongoose.connect(mongoURI)
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to database');
     app.listen(3000, () => {
       console.log('Server is running on port 3000');
     });
   })
-  .catch(() => { console.log('Connection failed'); });
+  .catch(err => {
+    console.error('Connection failed:', err);
+  });
