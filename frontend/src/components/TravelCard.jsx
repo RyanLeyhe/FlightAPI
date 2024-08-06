@@ -15,7 +15,7 @@ const TravelCard = () => {
         const codes = response.data;
         const options = codes.map(code => ({
           value: code,
-          label: code // Adjust label if you have additional details
+          label: code 
         }));
         setOriginOptions(options);
         setDestinationOptions(options);
@@ -53,14 +53,14 @@ const TravelCard = () => {
               placeholder="From"
               options={originOptions}
               onChange={(selected) => handleChange(index, 'from', selected?.value || '')}
-              className="flex-grow min-w-0 max-w-xs"
+              className="flex-grow min-w-0 max-w-xxsm"
             />
             <span className="mx-2">to</span>
             <Select
               placeholder="To"
               options={destinationOptions}
               onChange={(selected) => handleChange(index, 'to', selected?.value || '')}
-              className="flex-grow min-w-0 max-w-xs"
+              className="flex-grow min-w-0 max-w-xxsm"
             />
             {index > 0 && ( // Only show delete button if it's not the first instance
               <button
