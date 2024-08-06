@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  backend:
+    image: ryanleyhe/flightapi_backend:latest
+    ports:
+      - "3000:3000"
+    secrets:
+      - mongo_uri
+    environment:
+      - MONGO_URI_FILE=/run/secrets/mongo_uri
+
+  frontend:
+    image: ryanleyhe/flightapi_frontend:latest
+    ports:
+      - "5173:5173"
+
+secrets:
+  mongo_uri:
+    external: true
