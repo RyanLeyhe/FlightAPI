@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dataRoute = require('./routes/data.route.js');
 const airportRoute = require('./routes/AirportRoute.js');
 const flightRoute = require('./routes/FlightRoute.js')
+const fareRoute = require('./routes/FareRoute.js')
 const cors = require('cors');
 const app = express();
 const fs = require('fs')
@@ -20,6 +21,7 @@ app.options('*', cors()); // Handle preflight requests
 app.use("/api/data", dataRoute);
 app.use('/api/airports', airportRoute);
 app.use('/api/market-miles', flightRoute);
+app.use('/api/avg-fare', fareRoute);
 
 const mongoURI = process.env.MONGO_URI; // !!! ENV URI FOR LOCAL DEVELOPMENT. COMMENT BEFORE PUSHING !!!
 const port = process.env.PORT || 3000;  // Default to 3000 if PORT is not defined
