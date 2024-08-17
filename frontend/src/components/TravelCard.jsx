@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
-const API_BASE_URL = 'http://localhost:3001'; // LOCAL DEV
-// const API_BASE_URL = 'http://18.188.12.168:3000'; // EC2
+// const API_BASE_URL = 'http://localhost:3001'; // LOCAL DEV
+const API_BASE_URL = 'http://18.188.12.168:3000'; // EC2
 
 const TravelCard = ({ setTotalMiles, setTotalAvgFare }) => {
   const [travelInstances, setTravelInstances] = useState([{ from: '', to: '' }]);

@@ -25,9 +25,9 @@ app.use('/api/market-miles', flightRoute);
 app.use('/api/avg-fare', fareRoute);
 app.use('/api/cards', cardRoute);
 
-const mongoURI = process.env.MONGO_URI; // !!! ENV URI FOR LOCAL DEVELOPMENT. COMMENT BEFORE PUSHING !!!
+// const mongoURI = process.env.MONGO_URI; // !!! ENV URI FOR LOCAL DEVELOPMENT. COMMENT BEFORE PUSHING !!!
 const port = process.env.PORT || 3000;  // Default to 3000 if PORT is not defined
-// const mongoURI = fs.readFileSync('/run/secrets/mongo_uri', 'utf-8').trim() // FOR EC2 INSTANCE
+const mongoURI = fs.readFileSync('/run/secrets/mongo_uri', 'utf-8').trim() // FOR EC2 INSTANCE
 
 mongoose.connect(mongoURI)
   .then(() => {
