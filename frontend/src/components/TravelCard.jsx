@@ -50,7 +50,6 @@ const TravelCard = ({ setTotalMiles, setTotalAvgFare }) => {
     try {
       const response = await axios.post(`${API_BASE_URL}/api/avg-fare/avg-fare`, { from, to });
       const { avgFare } = response.data
-      console.log("fetchAvgFare: ", avgFare)
       return avgFare || 0
     } catch (error) {
       console.error('Error fetching avg fare:', error.message);

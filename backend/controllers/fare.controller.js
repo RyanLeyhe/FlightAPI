@@ -27,7 +27,6 @@ exports.getAvgFare = async (req, res) => {
             const avgFare = totalPassengers > 0 ? Math.round(totalFare / totalPassengers) : 0;
 
             res.status(200).json({ avgFare: avgFare });
-            console.log('Average Fare:', avgFare)
         } else {
             res.status(404).json({ message: 'Flight not found' });
         }

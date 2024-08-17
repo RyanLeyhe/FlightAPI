@@ -9,7 +9,6 @@ exports.getMarketMilesFlown = async (req, res) => {
     if (flightData.length > 0) {
       const marketMilesFlown = flightData[0].MARKET_MILES_FLOWN;
       res.json({ MARKET_MILES_FLOWN: marketMilesFlown });
-      console.log('Market Miles Flown:', marketMilesFlown);
     } else {
       res.status(404).json({ message: 'Flight not found' });
     }

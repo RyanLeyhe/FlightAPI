@@ -4,6 +4,7 @@ const dataRoute = require('./routes/data.route.js');
 const airportRoute = require('./routes/AirportRoute.js');
 const flightRoute = require('./routes/FlightRoute.js')
 const fareRoute = require('./routes/FareRoute.js')
+const cardRoute = require('./routes/CardRoute.js')
 const cors = require('cors');
 const app = express();
 const fs = require('fs')
@@ -22,6 +23,7 @@ app.use("/api/data", dataRoute);
 app.use('/api/airports', airportRoute);
 app.use('/api/market-miles', flightRoute);
 app.use('/api/avg-fare', fareRoute);
+app.use('/api/cards', cardRoute);
 
 const mongoURI = process.env.MONGO_URI; // !!! ENV URI FOR LOCAL DEVELOPMENT. COMMENT BEFORE PUSHING !!!
 const port = process.env.PORT || 3000;  // Default to 3000 if PORT is not defined

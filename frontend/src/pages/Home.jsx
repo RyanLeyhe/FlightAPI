@@ -9,18 +9,19 @@ const App = () => {
   const [instances, setInstances] = useState([0]); // Manage instances of travel input
   const [totalMiles, setTotalMiles] = useState(0); // Initialize totalMiles as number
   const [totalAvgFare, setTotalAvgFare] = useState(0); // Initialize totalAvgFare as number
-  const [spending, setSpending] = useState('');
+  const [spendingRequired, setSpendingRequired] = useState(0);
 
   const handleAddInstance = () => {
     setInstances([...instances, instances.length]);
   };
 
   const handleSelectCard = (card) => {
-    // Handle card selection
+     setSelectedCard(card);
   };
 
-  // console.log("App - totalAvgFare: ", totalAvgFare)
-  // console.log("App - totalMiles: ", totalMiles)
+  const handleSpendingRequiredChange = (amount) => {
+    setSpendingRequired(amount);
+  };
 
   return (
     <div className="p-8">
@@ -33,8 +34,12 @@ const App = () => {
          />
       ))}
       <TotalMiles totalMiles={totalMiles} totalAvgFare={totalAvgFare} />
-      <CardSelector onSelectCard={handleSelectCard} />
-      <SpendingEstimate spending={spending} />
+      <CardSelector 
+        onSelectCard={handleSelectCard}
+        totalAvgFare={totalAvgFare} 
+        onSpendingRequiredChange={handleSpendingRequiredChange} // pass travel cost to CardSelector
+      />
+      <SpendingEstimate amountToSpend={spendingRequired} /> {/* Pass totalAvgFare to SpendingEstimate */}
     </div>
   );
 };
